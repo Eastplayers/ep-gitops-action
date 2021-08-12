@@ -31,5 +31,5 @@ else
     rollout \
     restart \
     deployment/${K8S_DEPLOYMENT} \
-    -n ${K8S_NAMESPACE} \
+    -n ${K8S_NAMESPACE}
 fi
