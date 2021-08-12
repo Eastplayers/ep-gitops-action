@@ -1,16 +1,32 @@
 # action.yml
-name: 'Hello World'
-description: 'Greet someone and record the time'
+name: "Restart K8S deployment"
+description: "Greet someone and record the time"
 inputs:
-  who-to-greet:  # id of input
-    description: 'Who to greet'
+  namespace:  # id of input
+    description: "Which namespace"
     required: true
-    default: 'World'
+    default: "default"
+  server-url:
+    description: "server url"
+    required: true
+  token:
+    description: "token to authenticate to the cluster"
+    required: true
+  deployment:
+    description: "deployment name"
+    required: true
+  image-name:
+    description: "docker image name to update to"
+    required: false
 outputs:
-  time: # id of output
-    description: 'The time we greeted you'
+  digest:
+    description: "just here for now"
 runs:
-  using: 'docker'
-  image: 'Dockerfile'
+  using: "docker"
+  image: "Dockerfile"
   args:
-    - ${{ inputs.who-to-greet }}
+    - ${{ inputs.server-url }}
+    - ${{ inputs.token }}
+    - ${{ inputs.deployment }}
+    - ${{ inputs.image-name }}
+    - ${{ inputs.namespace }}
