@@ -14,7 +14,7 @@ KUBECTL="$(find /opt/bitnami/kubectl/bin/ -name kubectl)"
 
 time=$(date)
 echo "::set-output name=time::$time"
-if test -z "$K8S_IMAGE_NAME"
+if ! test -z "$K8S_IMAGE_NAME"
 then
   RESULT="$($KUBECTL \
     --insecure-skip-tls-verify \
