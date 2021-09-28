@@ -18,6 +18,9 @@ inputs:
   image-name:
     description: "docker image name to update to"
     required: false
+  container-name:
+    description: "container name inside pod to update"
+    required: false
 outputs:
   digest:
     description: "just here for now"
@@ -30,3 +33,4 @@ runs:
     - ${{ inputs.deployment }}
     - ${{ inputs.image-name }}
     - ${{ inputs.namespace }}
+    - ${{ inputs.container-name }}
