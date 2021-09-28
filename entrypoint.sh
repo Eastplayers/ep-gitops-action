@@ -8,6 +8,7 @@ K8S_TOKEN=$2
 K8S_DEPLOYMENT=$3
 K8S_IMAGE_NAME=$4
 K8S_NAMESPACE=$5
+K8S_CONTAINER_NAME=${6:-app}
 
 KUBECTL="$(find /opt/bitnami/kubectl/bin/ -name kubectl)"
 
@@ -22,7 +23,7 @@ then
     --server=${K8S_SERVER_URL} \
     --token=${K8S_TOKEN} \
     set image deployment/${K8S_DEPLOYMENT} \
-    app=${K8S_IMAGE_NAME} \
+    ${K8S_CONTAINER_NAME}=${K8S_IMAGE_NAME} \
     -n ${K8S_NAMESPACE} \
     --record)"
   echo $RESULT
