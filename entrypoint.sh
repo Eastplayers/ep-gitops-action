@@ -9,8 +9,25 @@ DEST_NAMESPACE=$4
 DOCKER_IMAGE=$5
 PROJECT=$6
 REVISION=${7:-HEAD}
+USERNAME=$8
+PASSWORD=$9
+HOST=${10}
 
-argocd app create $APP_NAME \
+echo $APP_NAME
+echo $REPO
+echo $PATH
+echo $DEST_NAMESPACE
+echo $DOCKER_IMAGE
+echo $PROJECT
+echo $REVISION
+echo $USERNAME
+echo $PASSWORD
+echo $HOST
+
+
+/usr/bin/argocd login $HOST --username $USERNAME --password $PASSWORD
+
+/usr/bin/argocd app create $APP_NAME \
   --repo $REPO \
   --path $PATH \
   --dest-namespace $DEST_NAMESPACE \
@@ -18,4 +35,4 @@ argocd app create $APP_NAME \
   --kustomize-image $DOCKER_IMAGE \
   --sync-policy auto \
   --project default \
-  --revision $REVISION \
+  --revision $REVISION
