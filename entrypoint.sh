@@ -19,6 +19,7 @@ git clone $GIT_REPO_URL
 cd hsv-ops
 
 ls -la
+sed "s/$MATCH/$TAG/g" $DEPLOYMENT_DIR
 sed -i "s/$MATCH/$TAG/g" $DEPLOYMENT_DIR
 
 git config --global user.name "pepepot"
