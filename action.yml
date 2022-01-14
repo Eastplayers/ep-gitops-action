@@ -1,6 +1,6 @@
 # action.yml
-name: "Restart K8S deployment"
-description: "Greet someone and record the time"
+name: "gitops action to update gitops template"
+description: "update image in kustomize, commit change to git so cicd tool can pick up"
 inputs:
   tag:  # id of input
     description: "Tag version of docker"
