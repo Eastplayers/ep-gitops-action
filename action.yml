@@ -15,6 +15,9 @@ inputs:
   token:
     description: "Token for managing github repo"
     required: true
+  branch:
+    description: "branch for pr or deploy"
+    required: false
 outputs:
   digest:
     description: "just here for now"
@@ -26,3 +29,4 @@ runs:
     - ${{ inputs.deployment-dir }}
     - ${{ inputs.image }}
     - ${{ inputs.token }}
+    - ${{ inputs.branch }}

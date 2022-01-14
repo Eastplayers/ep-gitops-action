@@ -2,11 +2,14 @@
 
 set -e
 
-TAG=$1
-DEPLOYMENT_DIR=$2
-IMAGE_REPO=$3
 GIT_TOKEN=$4
 GIT_REPO=$5
+
+TAG=$1
+DEPLOYMENT_DIR=$2
+
+IMAGE_REPO=$3
+BRANCH=${6:master}
 
 GIT_REPO_URL="https://pepepot:$GIT_TOKEN@$GIT_REPO"
 
@@ -20,4 +23,4 @@ git config --global user.email "ops@eastplayers.io"
 git config --global color.ui true
 git add $DEPLOYMENT_DIR
 git commit -m "[ci] PROD Update $IMAGE_REPO to $TAG"
-git push origin main
+git push origin $BRANCH
