@@ -21,6 +21,9 @@ inputs:
   branch:
     description: "branch for pr or deploy"
     required: false
+  match:
+    description: "branch for pr or deploy"
+    required: true
 outputs:
   digest:
     description: "just here for now"
@@ -34,3 +37,4 @@ runs:
     - ${{ inputs.token }}
     - ${{ inputs.repo-url }}
     - ${{ inputs.branch }}
+    - ${{ inputs.match }}
