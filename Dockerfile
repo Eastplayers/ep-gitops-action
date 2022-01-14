@@ -1,4 +1,4 @@
-FROM bitnami/kubectl:1.20
+FROM alpine/git
 
 COPY entrypoint.sh /entrypoint.sh
 

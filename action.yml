@@ -2,25 +2,19 @@
 name: "Restart K8S deployment"
 description: "Greet someone and record the time"
 inputs:
-  namespace:  # id of input
-    description: "Which namespace"
+  tag:  # id of input
+    description: "Tag version of docker"
     required: true
     default: "default"
-  server-url:
-    description: "server url"
+  deployment-dir:
+    description: "Deployment directory of the repo"
+    required: true
+  image:
+    description: "Image docker name"
     required: true
   token:
-    description: "token to authenticate to the cluster"
+    description: "Token for managing github repo"
     required: true
-  deployment:
-    description: "deployment name"
-    required: true
-  image-name:
-    description: "docker image name to update to"
-    required: false
-  container-name:
-    description: "container name inside pod to update"
-    required: false
 outputs:
   digest:
     description: "just here for now"
@@ -28,9 +22,7 @@ runs:
   using: "docker"
   image: "Dockerfile"
   args:
-    - ${{ inputs.server-url }}
+    - ${{ inputs.tag }}
+    - ${{ inputs.deployment-dir }}
+    - ${{ inputs.image }}
     - ${{ inputs.token }}
-    - ${{ inputs.deployment }}
-    - ${{ inputs.image-name }}
-    - ${{ inputs.namespace }}
-    - ${{ inputs.container-name }}

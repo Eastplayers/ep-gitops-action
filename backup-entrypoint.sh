@@ -38,5 +38,3 @@ else
     deployment/${K8S_DEPLOYMENT} \
     -n ${K8S_NAMESPACE})"
 fi
-
-

@@ -2,37 +2,22 @@
 
 set -e
 
-APP_NAME=$1
-REPO=$2
-PATH=$3
-DEST_NAMESPACE=$4
-DOCKER_IMAGE=$5
-PROJECT=$6
-REVISION=${7:-HEAD}
-USERNAME=$8
-PASSWORD=$9
-HOST=${10}
+TAG=$1
+DEPLOYMENT_DIR=$2
+IMAGE_REPO=$3
+GIT_TOKEN=$4
+GIT_REPO=$5
 
-echo $APP_NAME
-echo $REPO
-echo $PATH
-echo $DEST_NAMESPACE
-echo $DOCKER_IMAGE
-echo $PROJECT
-echo $REVISION
-echo $USERNAME
-echo $PASSWORD
-echo $HOST
+GIT_REPO_URL="https://pepepot:$GIT_TOKEN@$GIT_REPO"
 
+git clone $GIT_REPO_URL
+cd hsv-ops
 
-/usr/bin/argocd login $HOST --username $USERNAME --password $PASSWORD
+sed -i "s/0.1.*/0.1.$TAG/g" $DEPLOYMENT_DIR
 
-/usr/bin/argocd app create $APP_NAME \
-  --repo $REPO \
-  --path $PATH \
-  --dest-namespace $DEST_NAMESPACE \
-  --dest-server https://kubernetes.default.svc \
-  --kustomize-image $DOCKER_IMAGE \
-  --sync-policy auto \
-  --project default \
-  --revision $REVISION
+git config --global user.name "pepepot"
+git config --global user.email "ops@eastplayers.io"
+git config --global color.ui true
+git add $DEPLOYMENT_DIR
+git commit -m "[ci] PROD Update $IMAGE_REPO to $TAG"
+git push origin main
