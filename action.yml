@@ -1,35 +1,38 @@
 # action.yml
-name: "gitops action to update gitops template"
-description: "update image in kustomize, commit change to git so cicd tool can pick up"
+name: 'gitops action to update gitops template'
+description: 'update image in kustomize, commit change to git so cicd tool can pick up'
 inputs:
-  tag:  # id of input
-    description: "Tag version of docker"
+  tag: # id of input
+    description: 'Tag version of docker'
     required: true
-    default: "default"
+    default: 'default'
   deployment-dir:
-    description: "Deployment directory of the repo"
+    description: 'Deployment directory of the repo'
     required: true
   image:
-    description: "Image docker name"
+    description: 'Image docker name'
     required: true
   token:
-    description: "Token for managing github repo"
+    description: 'Token for managing github repo'
     required: true
   repo-url:
-    description: "repo url"
+    description: 'repo url'
     required: true
   branch:
-    description: "branch for pr or deploy"
+    description: 'branch for pr or deploy'
     required: false
   match:
-    description: "branch for pr or deploy"
+    description: 'branch for pr or deploy'
+    required: true
+  ops-dir:
+    description: 'ops directory after clone the repo'
     required: true
 outputs:
   digest:
-    description: "just here for now"
+    description: 'just here for now'
 runs:
-  using: "docker"
-  image: "Dockerfile"
+  using: 'docker'
+  image: 'Dockerfile'
   args:
     - ${{ inputs.tag }}
     - ${{ inputs.deployment-dir }}
@@ -38,3 +41,4 @@ runs:
     - ${{ inputs.repo-url }}
     - ${{ inputs.branch }}
     - ${{ inputs.match }}
+    - ${{ inputs.ops-dir }}

@@ -11,12 +11,13 @@ DEPLOYMENT_DIR=$2
 IMAGE_REPO=$3
 BRANCH=${6:master}
 MATCH=$7
+OPS_DIR=$8
 
 GIT_REPO_URL="https://pepepot:$GIT_TOKEN@$GIT_REPO"
 
 git clone $GIT_REPO_URL
 
-cd hsv-ops
+cd $OPS_DIR
 
 ls -la
 sed "s/$MATCH/$TAG/g" $DEPLOYMENT_DIR
