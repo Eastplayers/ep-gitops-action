@@ -27,6 +27,9 @@ inputs:
   ops-dir:
     description: 'ops directory after clone the repo'
     required: true
+  message:
+    description: 'message '
+    required: true
 outputs:
   digest:
     description: 'just here for now'
@@ -42,3 +45,4 @@ runs:
     - ${{ inputs.branch }}
     - ${{ inputs.match }}
     - ${{ inputs.ops-dir }}
+    - ${{ inputs.message }}

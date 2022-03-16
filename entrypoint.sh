@@ -12,6 +12,7 @@ IMAGE_REPO=$3
 BRANCH=${6:master}
 MATCH=$7
 OPS_DIR=$8
+MESSAGE=$9
 
 GIT_REPO_URL="https://pepepot:$GIT_TOKEN@$GIT_REPO"
 
@@ -28,5 +29,5 @@ git config --global user.email "ops@eastplayers.io"
 git config --global color.ui true
 
 git add $DEPLOYMENT_DIR
-git commit -m "[ci] PROD Update $IMAGE_REPO to $TAG"
+git commit -m "[ci] $MESSAGE Update $IMAGE_REPO to $TAG"
 git push origin $BRANCH
